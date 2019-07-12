@@ -17,7 +17,7 @@ export default class MovieCard extends Component {
         }
 
         return (
-            <div className="flex w-1/6 px-3 mb-6">
+            <div className="flex w-1/5 px-3 mb-6">
                 <div className="flex-1 flex flex-col border border-white rounded">
                     {image}
                     <div className="p-4">

@@ -49,6 +49,24 @@ export default class Search extends Component {
         });
     }
 
+    renderTitle() {
+        const { loaded, total, query } = this.state;
+
+        if (!loaded) {
+            return (
+                <h1 className="text-3xl font-semibold mb-6">
+                    Loading
+                </h1>
+            );
+        }
+
+        return (
+            <h1 className="text-3xl font-semibold mb-6">
+                {total} movies found with <em>"{decodeURI(query)}"</em>
+            </h1>
+        );
+    }
+
     renderLoadMoreButton() {
         const { loaded, loading, canLoad } = this.state;
 
@@ -75,12 +93,10 @@ export default class Search extends Component {
     }
 
     render() {
-        const { total, query, movies } = this.state;
+        const { movies } = this.state;
         return (
             <div>
-                <h1 className="text-3xl font-semibold mb-6">
-                    {total} Movies found with <em>"{decodeURI(query)}"</em>
-                </h1>
+                {this.renderTitle()}
                 <MovieGrid movies={movies} />
                 {this.renderLoadMoreButton()}
             </div>
