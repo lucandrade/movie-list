@@ -1,0 +1,39 @@
+{
+  "name": "tailwind-react-boilerplate",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "author": "Lucas Andrade <lucasandradedeveloper@gmail.com>",
+  "license": "ISC",
+  "scripts": {
+    "build:style": "postcss src/scss/index.scss -o src/index.css",
+    "watch:style": "postcss src/scss/index.scss -o src/index.css -w",
+    "start": "npm run watch:style & sleep 1.6 && react-scripts start",
+    "build": "npm run build:style && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.6.1",
+    "postcss-cli": "^6.1.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^3.0.1",
+    "tailwindcss": "^1.0.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
