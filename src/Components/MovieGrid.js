@@ -20,7 +20,7 @@ export default class MovieGrid extends Component {
         }
 
         return (
-            <div className="flex flex-wrap -mx-3">
+            <div className="flex flex-wrap -mx-3 mt-4">
                 {movies.map(this.renderMovie.bind(this))}
             </div>
         );

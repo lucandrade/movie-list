@@ -54,14 +54,14 @@ export default class Search extends Component {
 
         if (!loaded) {
             return (
-                <h1 className="text-3xl font-semibold mb-6">
+                <h1 className="text-3xl font-semibold mb-2">
                     Loading
                 </h1>
             );
         }
 
         return (
-            <h1 className="text-3xl font-semibold mb-6">
+            <h1 className="text-3xl font-semibold mb-2">
                 {total} movies found with <em>"{decodeURI(query)}"</em>
             </h1>
         );
@@ -97,6 +97,7 @@ export default class Search extends Component {
         return (
             <div>
                 {this.renderTitle()}
+                {this.renderLoadMoreButton()}
                 <MovieGrid movies={movies} />
                 {this.renderLoadMoreButton()}
             </div>
