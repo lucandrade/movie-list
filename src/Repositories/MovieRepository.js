@@ -16,6 +16,22 @@ class MovieRepository {
         
         return null;
     }
+
+    async search(query, page = 1) {
+        try {
+            const response = await Request.get(`/search?q=${query}&page=${page}`);
+            
+            if (!response.data.status) {
+                return null;
+            }
+
+            return response.data.payload;
+        } catch (e) {
+            console.error('Error listing movies', e);
+        }
+        
+        return null;
+    }
 }
 
 const instance = new MovieRepository();
