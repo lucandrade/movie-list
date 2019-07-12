@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieRepository from '../Repositories/MovieRepository';
+import MovieGrid from '../Components/MovieGrid';
 
 export default class Home extends Component {
     constructor(props) {
@@ -27,10 +28,14 @@ export default class Home extends Component {
         }
 
         const { page, total, items } = result;
+        let movies = [];
+        Array.prototype.push.apply(movies, this.state.movies);
+        Array.prototype.push.apply(movies, items);
+        
         this.setState({
             page,
             total,
-            movies: items,
+            movies,
             loading: false,
             loaded: true,
         });
@@ -57,6 +62,7 @@ export default class Home extends Component {
         return (
             <div>
                 <h1 className="text-3xl font-semibold mb-6">Popular Movies</h1>
+                <MovieGrid movies={this.state.movies} />
                 {this.renderLoadMoreButton()}
             </div>
         );

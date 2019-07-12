@@ -7,7 +7,7 @@ import Search from './Pages/Search';
 export default class App extends Component {
     render() {
         return (
-            <div className="h-screen bg-gray-800 text-white p-6 pt-24">
+            <div className="h-full min-h-screen bg-gray-800 text-white p-6 pt-24">
                 <Router>
                     <NavBar />
                     <Route path="/" exact component={Home} />
