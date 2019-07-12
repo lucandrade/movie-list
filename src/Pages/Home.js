@@ -10,7 +10,7 @@ export default class Home extends Component {
             movies: [],
             page: 0,
             total: 0,
-            loaded: false,
+            canLoad: true,
         };
     }
 
@@ -23,7 +23,7 @@ export default class Home extends Component {
         const result = await MovieRepository.listPopular(this.state.page + 1);
 
         if (!result) {
-            this.setState({ loading: false, loaded: true });
+            this.setState({ loading: false });
             return;
         }
 
@@ -31,21 +31,25 @@ export default class Home extends Component {
         let movies = [];
         Array.prototype.push.apply(movies, this.state.movies);
         Array.prototype.push.apply(movies, items);
-        
+
         this.setState({
             page,
             total,
             movies,
             loading: false,
-            loaded: true,
+            canLoad: total > movies.length,
         });
     }
 
     renderLoadMoreButton() {
-        const { loaded, loading } = this.state;
+        const { loading, canLoad } = this.state;
 
-        if (!loaded) {
-            return null;
+        if (!canLoad) {
+            return (
+                <span disabled={true} className="btn primary disabled">
+                    No More Results
+                </span>
+            );
         }
 
         return (
@@ -53,7 +57,7 @@ export default class Home extends Component {
                     onClick={this.loadMovies.bind(this)}
                     disabled={loading}
                     className="btn primary">
-                Load More
+                {loading ? 'Loading...' : 'Load More'}
             </button>
         );
     }
