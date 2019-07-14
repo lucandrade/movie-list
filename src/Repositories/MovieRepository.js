@@ -32,6 +32,22 @@ class MovieRepository {
         
         return null;
     }
+
+    async get(movieId) {
+        try {
+            const response = await Request.get(`/get/${movieId}`);
+            
+            if (!response.data.status) {
+                return null;
+            }
+
+            return response.data.payload;
+        } catch (e) {
+            console.error('Error getting movies', e);
+        }
+        
+        return null;
+    }
 }
 
 const instance = new MovieRepository();

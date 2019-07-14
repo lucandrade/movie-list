@@ -13,3 +13,14 @@
         @apply opacity-50 cursor-not-allowed;
     }
 }
+
+.badges {
+    @apply mt-4;
+    .badge {
+        @apply rounded-full border border-blue-500 text-blue-500 leading-relaxed inline-block text-xs px-2 ml-2;
+
+        &:first-child {
+            @apply ml-0;
+        }
+    }
+}

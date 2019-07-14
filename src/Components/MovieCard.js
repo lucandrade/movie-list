@@ -8,7 +8,7 @@ export default class MovieCard extends Component {
 
         if (movie.image) {
             image = (
-                <div className="rounded-t">
+                <div className="rounded-t overflow-hidden">
                     <Link to={`/movie/${movie.id}`}>
                         <img src={movie.image} alt={movie.title} />
                     </Link>

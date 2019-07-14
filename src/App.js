@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
+import Movie from './Pages/Movie';
 import Search from './Pages/Search';
 
 export default class App extends Component {
@@ -12,6 +13,7 @@ export default class App extends Component {
                     <NavBar />
                     <Route path="/" exact component={Home} />
                     <Route path="/search" component={Search} />
+                    <Route path="/movie/:id" component={Movie} />
                 </Router>
             </div>
         );
