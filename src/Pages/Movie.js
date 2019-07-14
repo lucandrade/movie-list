@@ -100,9 +100,9 @@ export default class Movie extends Component {
         }
 
         return (
-            <div className="flex mt-4">
+            <div className="flex flex-col md:flex-row mt-4">
                 {this.renderImage(movie)}
-                <div className="flex-1 px-4">
+                <div className="flex-1 px-0 pt-4 md:px-4 md:pt-0">
                     <Link className="text-red-500 underline text-sm" to="/">Back</Link>
                     <h1 className="text-3xl font-semibold leading-none mt-2">{movie.title}</h1>
                     <a target="_blank"
