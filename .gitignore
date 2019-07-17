@@ -1,6 +1,7 @@
 /node_modules
 /build
 .env
+.env.production
 *.local
 *.log*
 /src/index.css
