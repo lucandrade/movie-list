@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { makeMovieUrl } from '../Support/Paths';
 
 export default class MovieCard extends Component {
     render() {
@@ -9,7 +10,7 @@ export default class MovieCard extends Component {
         if (movie.image) {
             image = (
                 <div className="rounded-t overflow-hidden">
-                    <Link to={`/movie/${movie.id}`}>
+                    <Link to={makeMovieUrl(movie.id)}>
                         <img src={movie.image} alt={movie.title} />
                     </Link>
                 </div>
@@ -21,7 +22,7 @@ export default class MovieCard extends Component {
                 <div className="flex-1 flex flex-col border border-white rounded">
                     {image}
                     <div className="p-4">
-                        <Link to={`/movie/${movie.id}`}>
+                        <Link to={makeMovieUrl(movie.id)}>
                             {movie.title}
                         </Link>
                     </div>

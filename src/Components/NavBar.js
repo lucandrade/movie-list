@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { PATH_HOME, makeSearchUrl } from '../Support/Paths';
 
 class NavBar extends Component {
     constructor(props) {
@@ -20,15 +21,14 @@ class NavBar extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const path = `/search?q=${this.input.current.value}`;
-        this.props.history.push(encodeURI(path));
+        this.props.history.push(makeSearchUrl(this.input.current.value));
     }
 
     render() {
         return (
             <nav className="w-full fixed top-0 left-0 p-6 flex items-center bg-black text-white">
                 <div className="">
-                    <Link to="/">MovieList</Link>
+                    <Link to={PATH_HOME}>MovieList</Link>
                 </div>
                 <form className="flex-1 pl-6" onSubmit={this.onSubmit.bind(this)}>
                     <input type="text"
