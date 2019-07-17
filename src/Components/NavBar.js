@@ -34,7 +34,7 @@ class NavBar extends Component {
         return (
             <nav className="w-full fixed top-0 left-0 p-6 flex items-center bg-black text-white">
                 <div>
-                    <a href="#" onClick={this.onGoHome.bind(this)}>MovieList</a>
+                    <a href="/" onClick={this.onGoHome.bind(this)}>Movie List</a>
                 </div>
                 <form className="flex-1 pl-6" onSubmit={this.onSubmit.bind(this)}>
                     <input type="text"
