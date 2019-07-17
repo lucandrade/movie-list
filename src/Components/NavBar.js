@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { PATH_HOME, makeSearchUrl } from '../Support/Paths';
 
 class NavBar extends Component {
@@ -19,6 +19,12 @@ class NavBar extends Component {
         this.input.current.value = decodeURI(query);
     }
 
+    onGoHome(e) {
+        e.preventDefault();
+        this.input.current.value = "";
+        this.props.history.push(PATH_HOME);
+    }
+
     onSubmit(e) {
         e.preventDefault();
         this.props.history.push(makeSearchUrl(this.input.current.value));
@@ -27,8 +33,8 @@ class NavBar extends Component {
     render() {
         return (
             <nav className="w-full fixed top-0 left-0 p-6 flex items-center bg-black text-white">
-                <div className="">
-                    <Link to={PATH_HOME}>MovieList</Link>
+                <div>
+                    <a href="#" onClick={this.onGoHome.bind(this)}>MovieList</a>
                 </div>
                 <form className="flex-1 pl-6" onSubmit={this.onSubmit.bind(this)}>
                     <input type="text"
