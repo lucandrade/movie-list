@@ -1,5 +1,5 @@
 const isProduction = process.env.NODE_ENV === 'production';
-const prefix = '/' + (isProduction ? 'movie-list/' : '');
+const prefix = '/' + (isProduction && false ? 'movie-list/' : '');
 
 export const PATH_HOME = prefix;
 export const PATH_LOGS = `${prefix}logs`;
