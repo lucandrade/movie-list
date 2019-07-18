@@ -21,8 +21,11 @@ class NavBar extends Component {
 
     onGoToPath(path, e) {
         e.preventDefault();
-        this.input.current.value = "";
-        this.props.history.push(path);
+
+        if (path && this.props.location.pathname !== path) {
+            this.input.current.value = "";
+            this.props.history.push(path);
+        }
     }
 
     onSubmit(e) {
