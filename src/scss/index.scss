@@ -9,6 +9,10 @@
         @apply bg-blue-600 rounded;
     }
 
+    &.btn-xs {
+        @apply px-2 py-1 text-xs font-normal;
+    }
+
     &:disabled, &.disabled {
         @apply opacity-50 cursor-not-allowed;
     }

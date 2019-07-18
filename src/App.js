@@ -4,7 +4,8 @@ import NavBar from './Components/NavBar';
 import Home from './Pages/Home';
 import Movie from './Pages/Movie';
 import Search from './Pages/Search';
-import { PATH_HOME, PATH_MOVIE, PATH_SEARCH } from './Support/Paths';
+import Log from './Pages/Log';
+import { PATH_HOME, PATH_LOGS, PATH_MOVIE, PATH_SEARCH } from './Support/Paths';
 
 export default class App extends Component {
     render() {
@@ -15,6 +16,7 @@ export default class App extends Component {
                     <Route path={PATH_HOME} exact component={Home} />
                     <Route path={PATH_SEARCH} component={Search} />
                     <Route path={PATH_MOVIE} component={Movie} />
+                    <Route path={PATH_LOGS} component={Log} />
                 </Router>
             </div>
         );
