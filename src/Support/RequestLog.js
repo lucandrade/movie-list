@@ -1,26 +1,20 @@
-const storage = window.localStorage;
+import Storage from './Storage';
+
 const KEY = 'request_log';
 
 class RequestLog {
     add(duration, endpoint) {
-        const logs = this.get();
+        const logs = Storage.get(KEY);
         logs.push({ duration, endpoint });
-        const formattedLogs = JSON.stringify(logs);
-        storage.setItem(KEY, formattedLogs);
+        Storage.set(KEY, logs);
     }
 
     get() {
-        const data = storage.getItem(KEY);
-
-        try {
-            return JSON.parse(data) || [];
-        } catch (e) {
-            return [];
-        }
+        return Storage.get(KEY);
     }
 
     clear() {
-        storage.removeItem(KEY);
+        Storage.remove(KEY);
     }
 }
 
