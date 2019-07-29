@@ -17,9 +17,9 @@ class Storage {
         const data = this.client.getItem(key);
 
         try {
-            return JSON.parse(data) || [];
+            return JSON.parse(data);
         } catch (e) {
-            return [];
+            return data;
         }
     }
 
