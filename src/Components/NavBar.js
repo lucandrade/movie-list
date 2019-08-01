@@ -46,7 +46,7 @@ class NavBar extends Component {
                             placeholder="Search" />
                 </form>
                 <div className="hidden md:block pl-6 flex-1 text-right">
-                    <div className="text-sm text-gray-400">
+                    <div className="text-gray-400">
                         <a href="/" onClick={this.onGoToPath.bind(this, PATH_LOGS)}>
                             Requests Log
                         </a>
