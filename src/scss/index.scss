@@ -28,3 +28,11 @@
         }
     }
 }
+
+.collapsible {
+    @apply overflow-hidden h-auto;
+
+    &.collapsed {
+        display: none;
+    }
+}
