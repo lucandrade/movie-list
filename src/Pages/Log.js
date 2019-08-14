@@ -83,26 +83,32 @@ export default class Log extends Component {
         const { isPhp, isJava } = this.state;
 
         return (
-            <div>
-                <h1 className="text-3xl font-semibold mb-2">
-                    Requests Log
-                    <button type="button"
-                        onClick={this.onClear.bind(this)}
-                        className="btn primary btn-xs ml-2 align-text-bottom">
-                        Clear
-                    </button>
-                </h1>
-                <div className="inline-flex mb-2">
-                    <button className={`btn ml-2 align-text-bottom ${isPhp ? 'primary' : ''}`} onClick={this.onSetToPhp.bind(this)}>
-                        PHP
-                    </button>
-                    <button className={`btn ml-2 align-text-bottom ${isJava ? 'primary' : ''}`} onClick={this.onSetToJava.bind(this)}>
-                        Java
-                    </button>
+            <div className="mt-4">
+                <div className="flex flex-col md:flex-row mb-4 items-baseline md:items-center">
+                    <h1 className="text-3xl font-semibold leading-none">
+                        Requests Log
+                    </h1>
+                    <div className="flex-1 flex justify-start md:justify-end mt-4 md:mt-0">
+                        <div className="btn-group">
+                            <button className={`btn btn-xs primary ${isPhp ? 'opacity-50' : ''}`} onClick={this.onSetToPhp.bind(this)}>
+                                PHP
+                            </button>
+                            <button className={`btn btn-xs primary ${isJava ? 'opacity-50' : ''}`} onClick={this.onSetToJava.bind(this)}>
+                                Java
+                            </button>
+                        </div>
+                        <div className="ml-2">
+                            <button type="button"
+                                onClick={this.onClear.bind(this)}
+                                className="btn btn-xs danger">
+                                Clear Logs
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <table className="border-collapse w-full text-left">
                     <thead>
-                        <tr className="border-b border-t">
+                        <tr className="border-b">
                             <th className="p-4">Duration</th>
                             <th className="p-4">Endpoint</th>
                             <th className="p-4">Platform</th>

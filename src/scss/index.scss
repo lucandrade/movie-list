@@ -9,12 +9,34 @@
         @apply bg-blue-600 rounded;
     }
 
+    &.danger {
+        @apply bg-red-600 rounded;
+    }
+
     &.btn-xs {
         @apply px-2 py-1 text-xs font-normal;
     }
 
     &:disabled, &.disabled {
         @apply opacity-50 cursor-not-allowed;
+    }
+
+    &:focus {
+        @apply outline-none;
+    }
+}
+
+.btn-group {
+    .btn {
+        @apply rounded-none;
+
+        &:first-child {
+            @apply rounded-l;
+        }
+
+        &:last-child {
+            @apply rounded-r;
+        }
     }
 }
 
