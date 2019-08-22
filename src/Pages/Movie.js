@@ -111,7 +111,7 @@ export default class Movie extends Component {
                         <a target="_blank"
                             rel="noopener noreferrer"
                             href={movie.link}
-                            className="text-sm ml-2">Website <span className="text-xs">&#x2197;</span></a>
+                            className="text-sm ml-2 external text-gray-400">Website <span className="text-xs">&#x2197;</span></a>
                     </div>
                     {this.renderGenres(movie)}
                     <div className="mt-6">

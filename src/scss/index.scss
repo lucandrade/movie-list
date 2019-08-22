@@ -59,6 +59,7 @@
     }
 }
 
-span.text-xs {
+.external span {
+    @apply text-white;
     text-shadow: 0 2px 2px theme('colors.gray.500');
 }
