@@ -104,11 +104,15 @@ export default class Movie extends Component {
                 {this.renderImage(movie)}
                 <div className="flex-1 px-0 pt-4 md:px-4 md:pt-0">
                     <Link className="text-red-500 underline text-sm" to="/">Back</Link>
-                    <h1 className="text-3xl font-semibold leading-none mt-2">{movie.title}</h1>
-                    <a target="_blank"
-                        rel="noopener noreferrer"
-                        href={movie.link}
-                        className="text-sm underline">Website</a>
+                    <div className="flex items-center mt-2">
+                        <h1 className="text-3xl font-semibold leading-none">
+                            {movie.title}
+                        </h1>
+                        <a target="_blank"
+                            rel="noopener noreferrer"
+                            href={movie.link}
+                            className="text-sm ml-2">Website <span className="text-xs">&#x2197;</span></a>
+                    </div>
                     {this.renderGenres(movie)}
                     <div className="mt-6">
                         {movie.description}
