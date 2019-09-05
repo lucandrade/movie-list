@@ -77,3 +77,10 @@
         }
     }
 }
+
+.movie-list-poster {
+    background-position-y: 20%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    @apply h-48;
+}

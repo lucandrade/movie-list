@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import MovieListItem from '../Components/MovieListItem';
 import MovieRepository from '../Repositories/MovieRepository';
 
 const getMovieIDFromRouteParams = (params) => {
@@ -22,12 +23,24 @@ export default class Movie extends Component {
     }
 
     componentDidMount() {
-        this.loadMovie();
+        this.loadMovie(this.state.movieId);
     }
 
-    async loadMovie() {
-        this.setState({ loading: true });
-        const result = await MovieRepository.get(this.state.movieId);
+    componentDidUpdate() {
+        const movieId = getMovieIDFromRouteParams(this.props.match.params);
+
+        if (!movieId) {
+            return;
+        }
+
+        if (movieId !== this.state.movieId) {
+            this.loadMovie(movieId);
+        }
+    }
+
+    async loadMovie(movieId) {
+        this.setState({ loading: true, movieId });
+        const result = await MovieRepository.get(movieId);
 
         if (!result) {
             this.setState({ loading: false, movie: {} });
@@ -36,7 +49,7 @@ export default class Movie extends Component {
 
         this.setState({
             loading: false,
-            movie: result,
+            movie: result
         });
     }
 
@@ -95,6 +108,24 @@ export default class Movie extends Component {
         );
     }
 
+    renderSimilar(movie) {
+        if (!movie.similar) {
+            return null;
+        }
+
+        if (!Array.isArray(movie.similar)) {
+            return null;
+        }
+
+        return (
+            <div className="mt-2">
+                {movie.similar.map((m, i) => (
+                    <MovieListItem movie={m} key={`${m.id}-${i}`} />
+                ))}
+            </div>
+        );
+    }
+
     render() {
         const { loading, movie } = this.state;
 
@@ -128,8 +159,9 @@ export default class Movie extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="flex w-1/3 px-4">
-                        {/* <h1 className="text-3xl leading-none">Similar Movies</h1> */}
+                    <div className="w-full md:w-1/3 md:px-4 mt-4 md:mt-0">
+                        <h2 className="text-3xl leading-none mb-4">Similar Movies</h2>
+                        {this.renderSimilar(movie)}
                     </div>
                 </div>
             </div>
