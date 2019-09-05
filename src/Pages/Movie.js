@@ -17,6 +17,7 @@ export default class Movie extends Component {
             loading: true,
             movie: {},
             movieId: getMovieIDFromRouteParams(props.match.params),
+            posterOpened: false,
         };
     }
 
@@ -36,6 +37,12 @@ export default class Movie extends Component {
         this.setState({
             loading: false,
             movie: result,
+        });
+    }
+
+    onClickPoster() {
+        this.setState({
+            posterOpened: !this.state.posterOpened,
         });
     }
 
@@ -62,7 +69,7 @@ export default class Movie extends Component {
         }
 
         return (
-            <div className="flex-1 rounded-lg overflow-hidden">
+            <div className={`rounded-lg overflow-hidden image-container ${this.state.posterOpened ? 'opened' : ''}`} onClick={this.onClickPoster.bind(this)}>
                 <img src={movie.image} alt={movie.title} />
             </div>
         );
@@ -100,22 +107,29 @@ export default class Movie extends Component {
         }
 
         return (
-            <div className="flex flex-col md:flex-row mt-4">
-                {this.renderImage(movie)}
-                <div className="flex-1 px-0 pt-4 md:px-4 md:pt-0">
-                    <Link className="text-red-500 underline text-sm" to="/">Back</Link>
-                    <div className="flex items-center mt-2">
-                        <h1 className="text-3xl font-semibold leading-none">
-                            {movie.title}
-                        </h1>
-                        <a target="_blank"
-                            rel="noopener noreferrer"
-                            href={movie.link}
-                            className="text-sm ml-2 external text-gray-400">Website <span className="text-xs">&#x2197;</span></a>
+            <div className="xl:container container mx-auto mt-4 movie-page">
+                <Link className="mb-2 inline-block" to="/">Back</Link>
+                <div className="flex flex-col md:flex-row">
+                    <div className="flex-1 flex flex-col">
+                        {this.renderImage(movie)}
+                        <div className="px-0 pt-4">
+                            <div className="flex items-center mt-2">
+                                <h1 className="text-3xl font-semibold leading-none">
+                                    {movie.title}
+                                </h1>
+                                <a target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={movie.link}
+                                    className="text-sm ml-2 external text-gray-400">Website <span className="text-xs">&#x2197;</span></a>
+                            </div>
+                            {this.renderGenres(movie)}
+                            <div className="mt-6">
+                                {movie.description}
+                            </div>
+                        </div>
                     </div>
-                    {this.renderGenres(movie)}
-                    <div className="mt-6">
-                        {movie.description}
+                    <div className="flex w-1/3 px-4">
+                        {/* <h1 className="text-3xl leading-none">Similar Movies</h1> */}
                     </div>
                 </div>
             </div>

@@ -63,3 +63,17 @@
     @apply text-white;
     text-shadow: 0 2px 2px theme('colors.gray.500');
 }
+
+.movie-page {
+    .image-container {
+        max-height: 12rem;
+
+        @media (min-width: 1024px) {
+            max-height: 24rem;
+        }
+
+        &.opened {
+            max-height: 100%;
+        }
+    }
+}
