@@ -140,15 +140,15 @@ export default class Movie extends Component {
         return (
             <div className="xl:container container mx-auto mt-4 movie-page">
                 <div className="flex flex-col md:flex-row">
-                    <div className="flex-1 flex flex-col">
-                        <div className="flex items-center">
-                                <h1 className="text-3xl leading-none mb-4">
+                    <div className="flex-1 flex flex-col pr-4">
+                        <div className="flex mb-4 items-baseline">
+                                <h1 className="text-3xl leading-none">
                                     {movie.title}
                                 </h1>
                                 <a target="_blank"
                                     rel="noopener noreferrer"
                                     href={movie.link}
-                                    className="text-sm ml-2 external text-gray-400">
+                                    className="external">
                                     Website <span className="text-xs">&#x2197;</span>
                                 </a>
                             </div>
