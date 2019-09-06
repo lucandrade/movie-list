@@ -139,20 +139,22 @@ export default class Movie extends Component {
 
         return (
             <div className="xl:container container mx-auto mt-4 movie-page">
-                <Link className="mb-2 inline-block" to="/">Back</Link>
                 <div className="flex flex-col md:flex-row">
                     <div className="flex-1 flex flex-col">
-                        {this.renderImage(movie)}
-                        <div className="px-0 pt-4">
-                            <div className="flex items-center mt-2">
-                                <h1 className="text-3xl font-semibold leading-none">
+                        <div className="flex items-center">
+                                <h1 className="text-3xl leading-none mb-4">
                                     {movie.title}
                                 </h1>
                                 <a target="_blank"
                                     rel="noopener noreferrer"
                                     href={movie.link}
-                                    className="text-sm ml-2 external text-gray-400">Website <span className="text-xs">&#x2197;</span></a>
+                                    className="text-sm ml-2 external text-gray-400">
+                                    Website <span className="text-xs">&#x2197;</span>
+                                </a>
                             </div>
+                        {this.renderImage(movie)}
+                        <div className="px-0 pt-4">
+                            <Link to="/">Back</Link>
                             {this.renderGenres(movie)}
                             <div className="mt-6">
                                 {movie.description}
