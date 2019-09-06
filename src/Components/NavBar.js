@@ -48,7 +48,7 @@ class NavBar extends Component {
 
     render() {
         return (
-            <nav className="w-full fixed top-0 left-0 bg-black text-white">
+            <nav className="w-full fixed top-0 left-0 bg-black text-white z-20">
                 <div className="block p-6 flex items-center">
                     <div>
                         <a href="/" onClick={this.onGoToPath.bind(this, PATH_HOME)}>Movie List</a>
