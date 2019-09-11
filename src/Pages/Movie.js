@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import MovieListItem from '../Components/MovieListItem';
+import MovieTitle from '../Components/MovieTitle';
 import MovieRepository from '../Repositories/MovieRepository';
 
 const getMovieIDFromRouteParams = (params) => {
@@ -141,20 +142,10 @@ export default class Movie extends Component {
             <div className="xl:container container mx-auto mt-4 movie-page">
                 <div className="flex flex-col md:flex-row">
                     <div className="flex-1 flex flex-col pr-4">
-                        <div className="flex mb-4 items-baseline">
-                                <h1 className="text-3xl leading-none">
-                                    {movie.title}
-                                </h1>
-                                <a target="_blank"
-                                    rel="noopener noreferrer"
-                                    href={movie.link}
-                                    className="external">
-                                    Website <span className="text-xs">&#x2197;</span>
-                                </a>
-                            </div>
+                        <MovieTitle title={movie.title} link={movie.link} />
                         {this.renderImage(movie)}
                         <div className="px-0 pt-4">
-                            <Link to="/">Back</Link>
+                            <Link to="/" className="hidden md:inline-block mb-2">&#x2190; Go Back</Link>
                             {this.renderGenres(movie)}
                             <div className="mt-6">
                                 {movie.description}
