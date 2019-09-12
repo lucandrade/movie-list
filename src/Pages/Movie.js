@@ -4,6 +4,7 @@ import Modal from '../Components/Modal';
 import SimilarMovieCard from '../Components/SimilarMovieCard';
 import MovieTitle from '../Components/MovieTitle';
 import MovieTrailer from '../Components/MovieTrailer';
+import MoviePlayer from '../Components/MoviePlayer';
 import MovieRepository from '../Repositories/MovieRepository';
 
 const getMovieIDFromRouteParams = (params) => {
@@ -23,6 +24,7 @@ export default class Movie extends Component {
             movieId: getMovieIDFromRouteParams(props.match.params),
             posterOpened: false,
             modalOpened: false,
+            trailer: null,
         };
     }
 
@@ -142,10 +144,17 @@ export default class Movie extends Component {
         return (
             <div className="flex flex-wrap -mx-2 pt-4">
                 {movie.trailers.map((m, i) => (
-                    <MovieTrailer key={i} title={m.title} youtubeKey={m.key} />
+                    <MovieTrailer key={i} title={m.title} youtubeKey={m.key} onClick={this.onOpenPlayer.bind(this, m)} />
                 ))}
             </div>
         );
+    }
+
+    onOpenPlayer(trailer) {
+        this.setState({
+            modalOpened: true,
+            trailer,
+        });
     }
 
     onCloseModal() {
@@ -190,7 +199,9 @@ export default class Movie extends Component {
                         {this.renderSimilar(movie)}
                     </div>
                 </div>
-                <Modal opened={this.state.modalOpened} onClose={this.onCloseModal.bind(this)} />
+                <Modal opened={this.state.modalOpened} onClose={this.onCloseModal.bind(this)}>
+                    <MoviePlayer trailer={this.state.trailer} />
+                </Modal>
             </div>
         );
     }
