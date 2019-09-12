@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { makeMovieUrl } from '../Support/Paths';
 
-export default class MovieListItem extends Component {
+export default class SimilarMovieCard extends Component {
     render() {
         const { movie } = this.props;
         let image = null;

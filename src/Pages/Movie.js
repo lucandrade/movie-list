@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import MovieListItem from '../Components/MovieListItem';
+import Modal from '../Components/Modal';
+import SimilarMovieCard from '../Components/SimilarMovieCard';
 import MovieTitle from '../Components/MovieTitle';
+import MovieTrailer from '../Components/MovieTrailer';
 import MovieRepository from '../Repositories/MovieRepository';
 
 const getMovieIDFromRouteParams = (params) => {
@@ -20,6 +22,7 @@ export default class Movie extends Component {
             movie: {},
             movieId: getMovieIDFromRouteParams(props.match.params),
             posterOpened: false,
+            modalOpened: false,
         };
     }
 
@@ -121,10 +124,34 @@ export default class Movie extends Component {
         return (
             <div className="mt-2">
                 {movie.similar.map((m, i) => (
-                    <MovieListItem movie={m} key={`${m.id}-${i}`} />
+                    <SimilarMovieCard movie={m} key={`${m.id}-${i}`} />
                 ))}
             </div>
         );
+    }
+
+    renderTrailers(movie) {
+        if (!movie.trailers) {
+            return null;
+        }
+
+        if (!Array.isArray(movie.trailers)) {
+            return null;
+        }
+
+        return (
+            <div className="flex flex-wrap -mx-2 pt-4">
+                {movie.trailers.map((m, i) => (
+                    <MovieTrailer key={i} title={m.title} youtubeKey={m.key} />
+                ))}
+            </div>
+        );
+    }
+
+    onCloseModal() {
+        this.setState({
+            modalOpened: false,
+        });
     }
 
     render() {
@@ -142,14 +169,20 @@ export default class Movie extends Component {
             <div className="xl:container container mx-auto mt-4 movie-page">
                 <div className="flex flex-col md:flex-row">
                     <div className="flex-1 flex flex-col pr-4">
-                        <MovieTitle title={movie.title} link={movie.link} />
-                        {this.renderImage(movie)}
-                        <div className="px-0 pt-4">
-                            <Link to="/" className="hidden md:inline-block mb-2">&#x2190; Go Back</Link>
-                            {this.renderGenres(movie)}
-                            <div className="mt-6">
-                                {movie.description}
+                        <div>
+                            <MovieTitle title={movie.title} link={movie.link} />
+                            {this.renderImage(movie)}
+                            <div className="px-0 pt-4">
+                                <Link to="/" className="hidden md:inline-block mb-2">&#x2190; Go Back</Link>
+                                {this.renderGenres(movie)}
+                                <div className="mt-6">
+                                    {movie.description}
+                                </div>
                             </div>
+                        </div>
+                        <div className="px-0 pt-4">
+                            <h2 className="text-3xl leading-none">Trailers</h2>
+                            {this.renderTrailers(movie)}
                         </div>
                     </div>
                     <div className="w-full md:w-1/3 md:px-4 mt-4 md:mt-0">
@@ -157,6 +190,7 @@ export default class Movie extends Component {
                         {this.renderSimilar(movie)}
                     </div>
                 </div>
+                <Modal opened={this.state.modalOpened} onClose={this.onCloseModal.bind(this)} />
             </div>
         );
     }
